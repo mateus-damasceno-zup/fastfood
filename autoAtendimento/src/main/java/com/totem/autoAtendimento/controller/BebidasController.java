@@ -1,7 +1,11 @@
 package com.totem.autoAtendimento.controller;
 
 import com.totem.autoAtendimento.dto.BebidasDTO;
+import com.totem.autoAtendimento.model.Bebidas;
+import com.totem.autoAtendimento.repository.BebidasRepository;
 import com.totem.autoAtendimento.service.BebidaService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -11,6 +15,8 @@ import java.util.Optional;
 public class BebidasController {
 
     private final BebidaService bebidaService;
+    @Autowired
+    private BebidasRepository bebidasRepository;
 
 
     public BebidasController(BebidaService bebidaService) {
@@ -36,4 +42,9 @@ public class BebidasController {
         bebidaService.deletaBebida(id);
     }
 
+    @PutMapping("/{id}")
+    public BebidasDTO atualizaBebida (@PathVariable Long id,
+                                         @RequestBody BebidasDTO bebidasDTO){
+        return bebidaService.atualizaBebida(id,bebidasDTO);
+    }
 }

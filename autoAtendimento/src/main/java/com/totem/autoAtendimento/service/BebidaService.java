@@ -3,6 +3,7 @@ package com.totem.autoAtendimento.service;
 import com.totem.autoAtendimento.model.Bebidas;
 import com.totem.autoAtendimento.dto.BebidasDTO;
 import com.totem.autoAtendimento.repository.BebidasRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -10,6 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class BebidaService {
 
     private final BebidasRepository bebidasRepository;
@@ -19,42 +21,38 @@ public class BebidaService {
         this.bebidasRepository = bebidasRepository;
     }
 
-    public BebidasDTO cadastraBebidas (BebidasDTO bebida){
+    public BebidasDTO cadastraBebidas(BebidasDTO bebida) {
         Bebidas savedBebida = bebidasRepository.save(bebida.toBebidas());
         return new BebidasDTO(savedBebida);
     }
 
-    public Optional<BebidasDTO> getBebidasById(Long id){
+    public Optional<BebidasDTO> getBebidasById(Long id) {
         Optional<Bebidas> bebida = bebidasRepository.findById(id);
-        if (bebida.isPresent())
-            return Optional.of(new BebidasDTO(bebida.get()));
-        return Optional.empty();
+        return bebida.map(BebidasDTO::new);
     }
 
-    public Iterable<BebidasDTO> listaBebidas(){
+    public Iterable<BebidasDTO> listaBebidas() {
         Iterable<Bebidas> bebidas = bebidasRepository.findAll();
         List<BebidasDTO> bebidasDTOList = new ArrayList<>();
 
-        for(Bebidas bebida : bebidas){
+        for (Bebidas bebida : bebidas) {
             bebidasDTOList.add(new BebidasDTO(bebida));
         }
         return bebidasDTOList;
     }
 
-    public BebidasDTO atualizaBebida (Long id, BebidasDTO bebidasDTO){
-        Bebidas bebidaAtual = getBebidasById(id).get().toBebidas();
+    public BebidasDTO atualizaBebida(Long id,BebidasDTO bebidasDTO) {
+        Bebidas bebidasAtual = bebidasRepository.findById(id).get();
+        //todo: adicionar verificacao se nao existir e estourar um erro. como estourar um erro no spring
+        bebidasAtual.setNomeBebida(bebidasDTO.getNomeBebida());
+        bebidasAtual.setPreco(bebidasDTO.getPreco());
+        Bebidas bebidasAtualizada =bebidasRepository.save(bebidasAtual);
 
-        if(bebidasDTO.getNomeBebida()!=null){
-            bebidaAtual.setNomeBebida(bebidasDTO.getNomeBebida());
-        }
-        if(bebidasDTO.getPreco()!=null){
-            bebidaAtual.setPreco(bebidasDTO.getPreco());
-        }
-        bebidaAtual = bebidasRepository.save(bebidasDTO.toBebidas());
-        return new BebidasDTO(bebidaAtual);
+
+       return new BebidasDTO(bebidasAtualizada);
     }
 
-    public void deletaBebida(Long id){
+    public void deletaBebida(Long id) {
         bebidasRepository.deleteById(id);
     }
 

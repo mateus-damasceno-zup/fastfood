@@ -16,6 +16,8 @@ public class Bebidas {
     @Column(nullable = false)
     private Double preco;
 
+
+
     public Bebidas(Long id, String nomeBebida, Double preco) {
         this.id = id;
         this.nomeBebida = nomeBebida;
