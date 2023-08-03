@@ -1,12 +1,11 @@
 package com.totem.autoAtendimento.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.totem.autoAtendimento.model.Bebidas;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.extern.jackson.Jacksonized;
+
 
 import java.io.Serializable;
 
@@ -28,7 +27,7 @@ public class BebidasDTO implements Serializable {
     }
 
     public Bebidas toBebidas() {
-        return new Bebidas(id,nomeBebida, preco);
+        return new Bebidas(id, nomeBebida, preco);
     }
 
     public Long getId() {
