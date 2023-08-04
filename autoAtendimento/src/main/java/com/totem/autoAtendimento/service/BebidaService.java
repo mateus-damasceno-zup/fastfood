@@ -45,7 +45,7 @@ public class BebidaService {
         Bebidas bebidasAtual = bebidasRepository.findById(id).get();
         //todo: adicionar verificacao se nao existir e estourar um erro. como estourar um erro no spring
         bebidasAtual.setNomeBebida(bebidasDTO.getNomeBebida());
-        bebidasAtual.setPreco(bebidasDTO.getPreco());
+        bebidasAtual.setPrecoBebida(bebidasDTO.getPreco());
         Bebidas bebidasAtualizada =bebidasRepository.save(bebidasAtual);
 
 

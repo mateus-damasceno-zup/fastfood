@@ -10,22 +10,22 @@ import lombok.NoArgsConstructor;
 public class Bebidas {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idBebida;
     @Column(nullable = false)
     private String nomeBebida;
     @Column(nullable = false)
-    private Double preco;
+    private Double precoBebida;
 
 
 
-    public Bebidas(Long id, String nomeBebida, Double preco) {
-        this.id = id;
+    public Bebidas(Long id, String nomeBebida, Double precoBebida) {
+        this.idBebida = id;
         this.nomeBebida = nomeBebida;
-        this.preco = preco;
+        this.precoBebida = precoBebida;
     }
 
-    public Long getId() {
-        return id;
+    public Long getIdBebida() {
+        return idBebida;
     }
 
 
@@ -37,11 +37,11 @@ public class Bebidas {
         this.nomeBebida = nomeBebida;
     }
 
-    public Double getPreco() {
-        return preco;
+    public Double getPrecoBebida() {
+        return precoBebida;
     }
 
-    public void setPreco(Double preco) {
-        this.preco = preco;
+    public void setPrecoBebida(Double precoBebida) {
+        this.precoBebida = precoBebida;
     }
 }

@@ -21,9 +21,9 @@ public class BebidasDTO implements Serializable {
 
 
     public BebidasDTO(Bebidas bebidas) {
-        this.id = bebidas.getId();
+        this.id = bebidas.getIdBebida();
         this.nomeBebida = bebidas.getNomeBebida();
-        this.preco = bebidas.getPreco();
+        this.preco = bebidas.getPrecoBebida();
     }
 
     public Bebidas toBebidas() {

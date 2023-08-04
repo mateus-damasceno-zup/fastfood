@@ -9,20 +9,20 @@ import lombok.NoArgsConstructor;
 public class Lanches {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idLanches;
     @Column(nullable = false)
     private String nomeLanche;
     @Column(nullable = false)
-    private Double preco;
+    private Double precoLanche;
 
-    public Lanches(Long id, String nomeLanche, Double preco) {
-        this.id = id;
+    public Lanches(Long idLanches, String nomeLanche, Double precoLanche) {
+        this.idLanches = idLanches;
         this.nomeLanche = nomeLanche;
-        this.preco = preco;
+        this.precoLanche = precoLanche;
     }
 
-    public Long getId() {
-        return id;
+    public Long getIdLanches() {
+        return idLanches;
     }
 
 
@@ -34,11 +34,11 @@ public class Lanches {
         this.nomeLanche = nomeLanche;
     }
 
-    public Double getPreco() {
-        return preco;
+    public Double getPrecoLanche() {
+        return precoLanche;
     }
 
-    public void setPreco(Double preco) {
-        this.preco = preco;
+    public void setPrecoLanche(Double precoLanche) {
+        this.precoLanche = precoLanche;
     }
 }

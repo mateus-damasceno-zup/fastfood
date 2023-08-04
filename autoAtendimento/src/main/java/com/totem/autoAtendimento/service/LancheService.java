@@ -44,7 +44,7 @@ public class LancheService {
         Lanches lancheAtual = lancheRepository.findById(id).get();
         //todo: adicionar verificacao se nao existir e estourar um erro. como estourar um erro no spring
         lancheAtual.setNomeLanche(lanchesDTO.getNomeLanche());
-        lancheAtual.setPreco(lanchesDTO.getPreco());
+        lancheAtual.setPrecoLanche(lanchesDTO.getPreco());
         Lanches lancheAtualizado =lancheRepository.save(lancheAtual);
 
 

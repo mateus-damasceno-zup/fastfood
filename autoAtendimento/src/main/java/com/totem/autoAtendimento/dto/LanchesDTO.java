@@ -21,9 +21,9 @@ public class LanchesDTO implements Serializable {
     private Double preco;
 
     public LanchesDTO(Lanches lanche){
-        this.id = lanche.getId();
+        this.id = lanche.getIdLanches();
         this.nomeLanche = lanche.getNomeLanche();
-        this.preco = lanche.getPreco();
+        this.preco = lanche.getPrecoLanche();
 
     }
     public Lanches toLanche(){
